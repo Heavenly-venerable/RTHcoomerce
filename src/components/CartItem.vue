@@ -6,7 +6,7 @@ const props = defineProps<{ item: Product }>();
 
 <template>
   <div>
-    <div class="card card-compact bg-slate-800 shadow-md">
+    <div class="card card-compact dark:bg-base-200 shadow-md">
       <figure>
         <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
       </figure>
