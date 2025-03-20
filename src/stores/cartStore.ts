@@ -18,7 +18,7 @@ export const useCartStore = defineStore("cart", () => {
   };
 
   const removeFromCart = (productId: number) => {
-    cart.value.filter((item) => item.id !== productId)
+    cart.value = cart.value.filter((item) => item.id !== productId)
   }
 
   const updateQuantity = (productId: number, quantity: number) => {

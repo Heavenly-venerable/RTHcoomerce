@@ -1,6 +1,15 @@
+<script setup lang="ts">
+import { useRoute } from "vue-router"
+import { useCartStore } from "../stores/cartStore.ts"
+
+const cartStore = useCartStore()
+
+const route = useRoute()
+</script>
+
 <template>
   <div>
-    <div class="navbar dark:bg-base-200 shadow-md">
+    <div class="navbar bg-base-100 shadow-md">
       <div class="navbar-start">
         <div class="dropdown dropdown-start">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -9,16 +18,19 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
           </div>
-          <ul tabindex="0"
-            class="menu menu-sm dropdown-content bg-white dark:bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li>
-              <router-link to="/">Home</router-link>
+              <router-link :class="{ 'text-primary font-bold': route.path === '/' }"
+                class="hover:text-primary transition" to="/">Home</router-link>
             </li>
             <li>
-              <router-link to="/products/">Products</router-link>
-            </li>
-            <li>
-              <router-link to="/cart">Cart</router-link>
+              <router-link :class="{ 'text-primary font-bold': route.path === '/cart' }"
+                class="hover:text-primary transition" to="/cart">
+                Cart
+                <div class="badge badge-accent">
+                  {{ cartStore.totalItems }}
+                </div>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -35,35 +47,11 @@
               <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
             </svg>
           </div>
-          <ul tabindex="0" class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
-            <li>
+          <ul tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow-2xl mt-3">
+            <li v-for="theme in ['default', 'light', 'dark', 'coffee', 'valentine', 'cupcake']" :key="theme">
               <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Default"
-                value="default" />
-            </li>
-            <li>
-              <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="light"
-                value="light" />
-            </li>
-            <li>
-              <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="dark" value="dark" />
-            </li>
-            <li>
-              <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"
-                value="valentine" />
-            </li>
-            <li>
-              <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="cupcake"
-                value="cupcake" />
-            </li>
-            <li>
-              <input type="radio" name="theme-dropdown"
-                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="coffee"
-                value="coffee" />
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" :aria-label="theme"
+                :value="theme" />
             </li>
           </ul>
         </div>
