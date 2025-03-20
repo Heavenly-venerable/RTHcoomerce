@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { ref, computed } from "vue";
 import { useCartStore } from "../stores/cartStore.ts";
-import { computed } from "vue";
+import Toast from "../components/Toast.vue"
 
 const cartStore = useCartStore();
 
 const cartItems = computed(() => cartStore.cart);
 const totalPrice = computed(() => cartStore.totalPrice);
+const toastRef = ref<InstanceType<typeof Toast> | null>(null);
 
 const removeItem = (id: number) => {
   cartStore.removeFromCart(id);
+  toastRef.value?.showToast("Product berhasil dihapus", "accent", 3000);
 };
 
 const updateQuantity = (id: number, quantity: number) => {
@@ -19,6 +22,7 @@ const updateQuantity = (id: number, quantity: number) => {
 </script>
 
 <template>
+  <Toast ref="toastRef" />
   <div class="max-w-lg mx-auto p-4 bg-base-200 rounded-lg shadow-md">
     <h2 class="text-xl font-semibold text-center mb-4">My Cart</h2>
     <div v-if="cartItems.length">
@@ -26,8 +30,7 @@ const updateQuantity = (id: number, quantity: number) => {
         <div v-for="item in cartItems" :key="item.id"
           class="grid grid-cols-3 sm:flex sm:justify-between items-center border-b py-4 gap-2">
           <div class="col-span-2 flex items-center space-x-4">
-            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" :alt="item.name"
-              class="w-14 h-14 rounded-md object-cover" />
+            <img :src="item.image" :alt="item.name" loading="lazy" class="w-14 h-14 rounded-md object-cover" />
             <div>
               <h3 class="text-sm font-medium">{{ item.name }}</h3>
               <p class="text-xs text-gray-500">Rp {{ item.price }}</p>

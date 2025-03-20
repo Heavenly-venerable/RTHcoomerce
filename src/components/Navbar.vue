@@ -36,7 +36,9 @@ const route = useRoute()
         </div>
       </div>
       <div class="navbar-center">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
+        <span class="text-xl font-bold">
+          <router-view to="/">RTHCoomerce</router-view>
+        </span>
       </div>
       <div class="navbar-end">
         <div class="dropdown dropdown-end mr-2">
