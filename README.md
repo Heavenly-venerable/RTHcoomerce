@@ -1,5 +1,52 @@
-# Vue 3 + TypeScript + Vite
+# RTHcoomerce - Project Based Learning
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+RTHcoomerce adalah sebuah proyek latihan untuk memahami konsep state management menggunakan pinia. proyek ini mensimulasikan e-coomerce sederhana dengan fitur **menampilkan produk, menambahkan ke keranjang, dan mengelola state** secara efisien.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Fitur
+
+- Menampilkan daftar produk
+- Menambah, mengedit & menghapus produk dari keranjang
+- State management dengan pinia
+- support beberapa tema termasuk dark mode
+
+## Teknologi Yang Digunakan
+
+- vue 3 + vite
+- Pinia (State Management)
+- Daisy UI
+
+## Struktur Proyek
+
+```
+RTHcommerce/
+│── src/
+│   ├── components/   # Komponen UI
+│   ├── view/        # Halaman utama
+│   ├── stores/       # Pinia Store
+│   ├── App.vue       # Entry point
+│   ├── main.js       # Konfigurasi Vue
+│── public/           # Static assets
+│── package.json      # Dependencies
+│── vite.config.js    # Config Vite
+```
+
+## Instalasi & Menjalankan Proyek
+
+1. Clone Repository
+
+``` bash
+git clone https://github.com/Heavenly-venerable/RTHcoomerce.git
+cd RTHcoomerce
+```
+
+2. Install Dependencies
+
+``` bash
+npm install
+```
+
+3. Jalankan Server
+
+``` bash
+npm run dev
+```
